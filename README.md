@@ -55,7 +55,72 @@ payload
     }
 
 
-# Get Producs API 
+#List all the products
 URL: http://127.0.0.1:8000/v1/api/products/
 Method: GET
 with Authorization Bearer token.
+
+## GRAPHQL
+URL: http://127.0.0.1:8000/graphql
+
+#List all the products
+query {
+  products {
+    id
+    name
+    price
+    quantity
+  }
+}
+
+#Create a product
+  mutation {
+        create_product_item: createProductItem(input: {name:"Product_test_6", price: 5000, quantity: 1, description: "some desc"}){
+            productItem {
+                name
+                price
+                quantity
+                description
+            }
+        }
+      }
+
+#List all the products which user bought
+query {
+  userBuyItems {
+    quantity
+    product {
+      name
+      description
+      price
+    }
+    user {
+      email
+      firstName
+      lastName
+    }
+  }
+}
+
+
+# Create user buy products API
+mutation {
+  create_cart_item: createCartItem(
+    input: { user: 2, product: 2, quantity: 1 }
+  ) {
+    cartItem {
+      product {
+        name
+        description
+        price
+      }
+      user {
+        email
+        firstName
+        lastName
+      }
+      quantity
+    }
+  }
+}
+

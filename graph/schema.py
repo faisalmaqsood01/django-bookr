@@ -45,6 +45,30 @@ class Query(graphene.ObjectType):
 "Mutations Code"
 
 
+class ProductsInput(graphene.InputObjectType):
+  name = graphene.String(description='Input product name')
+  price = graphene.Int(description='Input product price')
+  quantity = graphene.Int(description='Input quantity')
+  description = graphene.String(description='Input description')
+
+
+class createProductItem(graphene.Mutation):
+  class Arguments:
+    input = ProductsInput(required=True)
+
+  productItem = graphene.Field(ProductType)
+
+  @classmethod
+  def mutate(cls, root, info, input):
+    productItem = Product()
+    productItem.name = input.name
+    productItem.price = input.price
+    productItem.quantity = input.quantity
+    productItem.description = input.description
+    productItem.save()
+    return createProductItem(productItem=productItem)
+
+
 class CartItemsInput(graphene.InputObjectType):
   user = graphene.Int(description='Input Valid User ID')
   product = graphene.Int(description='Input Valid product ID')
@@ -71,56 +95,6 @@ class createCartItem(graphene.Mutation):
 
 class Mutation(graphene.ObjectType):
   create_cart_item = createCartItem.Field()
+  create_product_item = createProductItem.Field()
 
 schema = graphene.Schema(query=Query, mutation=Mutation)
-
-
-"""
-
-"Query Buy Products" 
-        query {
-          userBuyItems{
-              quantity
-              product {
-                  name
-                  description
-                  price
-              }
-              user {
-                  email
-                  firstName
-                  lastName
-              }
-            }
-        }
-        
-        
-"Query All Products" 
-        query {
-          products{
-              id
-              name
-              price
-              quantity
-            }
-        }
-
-" Mutation Create buy product" 
-       mutation {
-        create_cart_item: createCartItem(input: {user:2, product: 2, quantity: 1}){
-          cartItem {
-            product {
-                  name
-                  description
-                  price
-              }
-              user {
-                  email
-                  firstName
-                  lastName
-              }
-            quantity
-          }
-        }
-      }
-"""
