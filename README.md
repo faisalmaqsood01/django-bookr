@@ -28,8 +28,8 @@ Copy the .env file into your config folder and run the server using cmd
 (env)$ python manage.py runserver
 ```
 
-## Django APIS
-# Register User.
+# Django APIS
+## Register User.
 URL: http://127.0.0.1:8000/v1/auth/register/
 
 Method: Post
@@ -44,7 +44,7 @@ payload.
     "last_name": "Maqsood"
 }
 
-# Login-API
+## Login-API
 
 URL: http://127.0.0.1:8000/v1/auth/login
 Method: Post
@@ -55,15 +55,16 @@ payload
     }
 
 
-#List all the products
+## List all the products
 URL: http://127.0.0.1:8000/v1/api/products/
 Method: GET
 with Authorization Bearer token.
 
-## GRAPHQL
+# GRAPHQL
 URL: http://127.0.0.1:8000/graphql
 
-#List all the products
+##List all the products
+
 query {
   products {
     id
@@ -73,7 +74,8 @@ query {
   }
 }
 
-#Create a product
+##Create a product
+
   mutation {
         create_product_item: createProductItem(input: {name:"Product_test_6", price: 5000, quantity: 1, description: "some desc"}){
             productItem {
@@ -85,7 +87,8 @@ query {
         }
       }
 
-#List all the products which user bought
+##List all the products which user bought
+
 query {
   userBuyItems {
     quantity
@@ -103,7 +106,8 @@ query {
 }
 
 
-# Create user buy products API
+## Create user buy products API
+
 mutation {
   create_cart_item: createCartItem(
     input: { user: 2, product: 2, quantity: 1 }
