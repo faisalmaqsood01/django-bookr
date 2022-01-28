@@ -55,7 +55,7 @@ payload
     }
 
 
-# Get Producs API
+# Get Producs API 
 URL: http://127.0.0.1:8000/v1/api/products/
 Method: GET
-
+with Authorization Bearer token.
