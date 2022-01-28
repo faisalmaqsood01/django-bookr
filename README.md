@@ -21,14 +21,14 @@ Then install the dependencies:
 
 ```sh
 (venv)$ pip install -r requirements.txt
+```
 
 Copy the .env file into your config folder and run the server using cmd
 ```sh
 (env)$ python manage.py runserver
-
+```
 
 ## Django APIS
-
 # Register User.
 URL: http://127.0.0.1:8000/v1/auth/register/
 
