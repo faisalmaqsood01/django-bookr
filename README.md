@@ -63,7 +63,7 @@ with Authorization Bearer token.
 # GRAPHQL
 URL: http://127.0.0.1:8000/graphql
 
-##List all the products
+## List all the products
 
 query {
   products {
@@ -74,7 +74,7 @@ query {
   }
 }
 
-##Create a product
+## Create a product
 
   mutation {
         create_product_item: createProductItem(input: {name:"Product_test_6", price: 5000, quantity: 1, description: "some desc"}){
@@ -87,7 +87,7 @@ query {
         }
       }
 
-##List all the products which user bought
+## List all the products which user bought
 
 query {
   userBuyItems {
