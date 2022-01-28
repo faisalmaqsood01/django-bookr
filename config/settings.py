@@ -25,6 +25,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'apis',
+    'graphene_django'
 ]
 
 MIDDLEWARE = [
@@ -69,19 +70,12 @@ DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 DATABASES = {
      'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'kbkulehx',
-        'USER': 'kbkulehx',
-        'PASSWORD': '5vr8bNjaFunZ-SSnRZGaRTaPt0eI6FpV',
-        'HOST': 'tyke.db.elephantsql.com',
+        'NAME':  env('DATABASE_NAME'),
+        'USER':  env('DATABASE_USER_NAME'),
+        'PASSWORD': env('DATABASE_PASSWORD'),
+        'HOST':  env('DATABASE_HOST'),
         'PORT': '5432',
      }
-}
-# postgres://kbkulehx:5vr8bNjaFunZ-SSnRZGaRTaPt0eI6FpV@tyke.db.elephantsql.com/kbkulehx
-
-
-REST_FRAMEWORK = {
-    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
-    'PAGE_SIZE': 100
 }
 
 AUTH_PASSWORD_VALIDATORS = [
